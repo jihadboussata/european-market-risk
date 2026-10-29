@@ -1,0 +1,30 @@
+source("R/risk.R")
+near <- function(x,y,tol=1e-9) stopifnot(abs(x-y)<tol)
+near(historical_risk(1:5,.5)[["var"]],3)
+near(historical_risk(1:5,.5)[["es"]],4.2)
+near(historical_risk(rep(7,20),.95)[["es"]],7)
+near(historical_risk(1:100,.95)[["es"]],98)
+near(historical_risk(1:5,1-1e-14)[["es"]],5)
+for(fun in list(historical_risk,normal_risk,student_risk)) {
+  result <- fun(c(-2,-1,0,1,2,5),.95)
+  shifted <- fun(c(-2,-1,0,1,2,5)+3,.95)
+  stopifnot(result[["es"]]>=result[["var"]]); near(shifted[["var"]]-result[["var"]],3)
+}
+set.seed(1)
+loss <- data.frame(date=as.Date("2020-01-01")+0:49,index="synthetic",loss=rnorm(50))
+first <- rolling_forecasts(loss,window=20)
+future_changed <- loss; future_changed$loss[40:50] <- 1000
+second <- rolling_forecasts(future_changed,window=20)
+# Altering future observations cannot alter earlier forecasts.
+stopifnot(identical(first$var[first$date<loss$date[40]],second$var[second$date<loss$date[40]]))
+stopifnot(all(first$estimation_end<first$date))
+sample_prices <- data.frame(date=as.Date("2020-01-01")+0:2,index="synthetic",close=100*exp(c(0,.01,-.01)))
+stopifnot(isTRUE(all.equal(prices_to_losses(sample_prices)$loss,c(-1,2))))
+analytic <- normal_risk(seq(-2,2,length.out=100),.95)
+mc <- normal_monte_carlo(seq(-2,2,length.out=100),.95)
+near(analytic[["var"]],mc[["var"]],.03)
+near(analytic[["es"]],mc[["es"]],.03)
+student <- student_risk(seq(-2,2,length.out=100),.99)
+tail_integral <- integrate(function(z) z*dt(z,df=5),qt(.99,df=5),Inf)$value/.01
+near(student[["es"]],sd(seq(-2,2,length.out=100))*sqrt(3/5)*tail_integral,1e-6)
+cat("All risk-definition, Monte Carlo and no-lookahead checks passed. Synthetic data is used only in tests.\n")

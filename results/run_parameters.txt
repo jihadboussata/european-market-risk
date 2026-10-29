@@ -1,0 +1,3 @@
+Input MD5: 1156c4beba56033b6955aad0062f62df
+Window: 252
+Unit: one-day percentage log-return losses; seed 42; Monte Carlo draws 100000; fixed Student-t df 5.

@@ -1,0 +1,45 @@
+{
+  "source": "Yahoo Finance chart endpoint",
+  "start_inclusive": "2015-01-01",
+  "end_exclusive": "2026-01-01",
+  "retrieved_utc": "2026-10-29T12:01:05.615098+00:00",
+  "series": [
+    {
+      "index": "CAC40",
+      "ticker": "^FCHI",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EFCHI?period1=1420070400&period2=1767225600&interval=1d",
+      "selected_field": "adjusted_close",
+      "currency": "EUR",
+      "prices": 2815,
+      "response_sha256": "d932e5cedc57e00902bf01374b572fbbc8109295b2f9e13eea214d3fa1856f1c"
+    },
+    {
+      "index": "DAX",
+      "ticker": "^GDAXI",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGDAXI?period1=1420070400&period2=1767225600&interval=1d",
+      "selected_field": "adjusted_close",
+      "currency": "EUR",
+      "prices": 2790,
+      "response_sha256": "829d78d8edf5c2089c5f06debf3a4a72012449844a59a14ac88a120dfd122b04"
+    },
+    {
+      "index": "SMI",
+      "ticker": "^SSMI",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESSMI?period1=1420070400&period2=1767225600&interval=1d",
+      "selected_field": "adjusted_close",
+      "currency": "CHF",
+      "prices": 2752,
+      "response_sha256": "f0f6c1b7ff09340e757c6d6a1a10f87a90296a5f0fdcb52058211051c74b6a96"
+    },
+    {
+      "index": "FTSE",
+      "ticker": "^FTSE",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EFTSE?period1=1420070400&period2=1767225600&interval=1d",
+      "selected_field": "adjusted_close",
+      "currency": "GBP",
+      "prices": 2778,
+      "response_sha256": "d03a1894ca199d43e09be7746c90ab823e0795fdd1746046ff11371fb885a95a"
+    }
+  ],
+  "csv_sha256": "818045a61f5ef74b14913130830491c62074ce5bba662ed1a190a44f4eb6db6d"
+}

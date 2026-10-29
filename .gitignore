@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user/
+data/raw/
+results/rolling_*.csv
